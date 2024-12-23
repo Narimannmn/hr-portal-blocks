@@ -8,9 +8,12 @@ const __dirname = dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
+const componentsPath = path.resolve(__dirname, '.components')
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
+	...compat.extends('next/core-web-vitals', 'next/typescript'),
+	includeIgnoreFile(componentsPath),
+	
+]
 
 export default eslintConfig;
