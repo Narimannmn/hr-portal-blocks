@@ -52,7 +52,7 @@ export function ShareResponsesForm() {
 
 	return (
 		<div className='w-[620px] text-white border-none p-4 mx-auto'>
-			<h2 className='text-5xl font-medium mb-8'>Есть чем поделится? пиши!</h2>
+			<h2 className='text-4xl font-medium mb-8'>Есть чем поделится? пиши!</h2>
 			<form onSubmit={handleSubmit(onSubmit)} className='space-y-[2rem]'>
 				<div>
 					<Controller

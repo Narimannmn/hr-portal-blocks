@@ -1,5 +1,6 @@
 import { BlockType } from "../blocks/Blocks"
-import { Department, Employee, Job, JobGroup, Media, News } from "./generated-types"
+import { RichTextNode } from "../utils/serializeRichTextToHtml"
+import { Department, Employee, Job, JobGroup, LocalFile, Media, News } from "./generated-types"
 import { TLabel } from "./global.types"
 
 export interface PageDocument {
@@ -9,6 +10,15 @@ export interface PageDocument {
 	layout: PageLayout[]
 	createdAt: string
 	updatedAt: string
+}
+
+export interface Inner {
+	id: number
+	section: string
+	section_slug: string
+	layout?: PageLayout[]
+	updatedAt: string
+	createdAt: string
 }
 
 export interface Layout {
@@ -116,6 +126,33 @@ export interface VacancyCatalogLayout extends Layout {
 	id: string
 	blockType: 'vacancyCatalog'
 }
+export interface ShareResponsesFormLayout extends Layout {
+	blockType: 'shareResponsesForm'
+}
+export interface RichTextLayout extends Layout {
+	content: {
+		contentRu: RichTextNode[]
+		contentEn: RichTextNode[]
+		contentKz: RichTextNode[]
+	}
+	blockType: 'richText'
+}
+export interface FileUploadBlockLayout extends Layout {
+	files?: {
+		file?: LocalFile
+		id?: string | null
+	}[]
+	blockType: 'fileUploadBlock'
+}
+export interface TextBlockLayout extends Layout {
+	Text: TLabel
+	backgroundColor?: string | null
+	blockType: 'textBlock'
+}
+export interface ImageBlockLayout extends Layout {
+	image: Media
+	blockType: 'imageBlock'
+}
 
 // export interface WrapperLayout extends Layout {
 // 	margins?: {
@@ -144,3 +181,8 @@ export type PageLayout =
 	| NewsCatalogLayout
 	| SpaceFillerLayout
 	| VacancyCatalogLayout
+	| ShareResponsesFormLayout
+	| RichTextLayout
+	| ImageBlockLayout
+	| TextBlockLayout
+	| FileUploadBlockLayout

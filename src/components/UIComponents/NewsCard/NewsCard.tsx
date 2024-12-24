@@ -16,7 +16,7 @@ import 'dayjs/locale/ru'
 import { useLang } from '@/src/contexts/lang.context'
 import { News } from '@/src/types/generated-types'
 import { imageSource } from '@/src/utils/imageSource'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export interface NewsCardProps {
 	newItem: News
@@ -25,7 +25,6 @@ export interface NewsCardProps {
 export function NewsCard({ newItem }: NewsCardProps) {
 	const { t } = useLang()
 	const router = useRouter()
-	const pathname = usePathname() // Get the current path
 
 	return (
 		<Card className='bg-transparent border-none w-full'>
@@ -47,7 +46,11 @@ export function NewsCard({ newItem }: NewsCardProps) {
 				<CardDescription className='space-y-2'>
 					<div>
 						<div
-							onClick={() => router.push(`${pathname}/news/${newItem.id}`)}
+							onClick={() =>
+								router.push(
+									`${newItem.innerPage.section}/${newItem.innerPage.section_slug}`
+								)
+							}
 							className='grid grid-cols-[1fr_10px] h-8 gap-2 items-center cursor-pointer'
 						>
 							<h1 className='text-2xl font-bold text-white leading-8 overflow-hidden whitespace-nowrap text-ellipsis'>

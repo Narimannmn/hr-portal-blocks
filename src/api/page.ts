@@ -1,4 +1,4 @@
-import { PageDocument } from "../types/page.type"
+import { Inner, PageDocument } from "../types/page.type"
 import { API_BASE_URL } from "./api"
 
 export const fetchPageData = async (
@@ -49,7 +49,7 @@ export const fetchMainPage = async (): Promise<PageDocument | null> => {
 export const fetchInnerPage = async (
 	section: string,
 	cardId?: string
-): Promise<PageDocument | null> => {
+): Promise<Inner | null> => {
 	try {
 		const response = await fetch(
 			`${API_BASE_URL}/api/inner?where[section_slug][equals]=${section}&cardId=${cardId}`,
@@ -61,7 +61,7 @@ export const fetchInnerPage = async (
 				credentials: 'include',
 			}
 		)
-		const data: { docs: PageDocument[] } = await response.json()
+		const data: { docs: Inner[] } = await response.json()
 
 		return data.docs?.[0] || null
 	} catch (error) {

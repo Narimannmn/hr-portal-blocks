@@ -1,6 +1,6 @@
 import { RichTextNode } from "../utils/serializeRichTextToHtml"
 import { TLabel } from "./global.types"
-import { PageDocument } from "./page.type"
+import { Inner, PageDocument } from "./page.type"
 
 export interface User {
 	id: number
@@ -18,6 +18,21 @@ export interface User {
 }
 export interface Media {
 	id: number
+	alt: string
+	updatedAt: string
+	createdAt: string
+	url?: string | null
+	filename?: string | null
+	mimeType?: string | null
+	filesize?: number | null
+	width?: number | null
+	height?: number | null
+	focalX?: number | null
+	focalY?: number | null
+}
+export interface LocalFile {
+	id: number
+	fileLabels?:TLabel
 	alt: string
 	updatedAt: string
 	createdAt: string
@@ -65,11 +80,7 @@ export interface MenuOrder {
 export interface News {
 	id: number
 	title: TLabel
-	content: {
-		labelKz: RichTextNode[]
-		labelRu: RichTextNode[]
-		labelEn: RichTextNode[]
-	}
+	innerPage: Inner
 	description: TLabel
 	preview: Media
 	newsGroups: NewsGroup

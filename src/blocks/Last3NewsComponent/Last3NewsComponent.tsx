@@ -4,6 +4,7 @@ import { Last3NewsLayout } from '@/src/types/page.type'
 import { imageSource } from '@/src/utils/imageSource'
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const Last3NewsComponent = ({lastThreeNews}:Last3NewsLayout) => {
   const { t } = useLang()
@@ -26,7 +27,11 @@ export const Last3NewsComponent = ({lastThreeNews}:Last3NewsLayout) => {
 							</CardContent>
 							<CardHeader className='p-0 space-y-3 mb-6'>
 								<CardTitle className='text-sm text-[#E1056D]'>
-									{t(lastThreeNews[0].newsGroups.name)}
+									<Link
+										href={`${lastThreeNews[0].innerPage.section}/${lastThreeNews[0].innerPage.section_slug}`}
+									>
+										{t(lastThreeNews[0].newsGroups.name)}
+									</Link>
 								</CardTitle>
 								<CardDescription className='space-y-2'>
 									<div className='flex h-8 overflow-hidden whitespace-nowrap text-ellipsis'>
@@ -55,9 +60,11 @@ export const Last3NewsComponent = ({lastThreeNews}:Last3NewsLayout) => {
 								</div>
 							</CardContent>
 							<CardHeader className='p-0 space-y-3 h-full'>
-								<CardTitle className='text-sm text-[#E1056D]'>
+								<Link
+									href={`${lastThreeNews[1].innerPage.section}/${lastThreeNews[1].innerPage.section_slug}`}
+								>
 									{t(lastThreeNews[1].newsGroups.name)}
-								</CardTitle>
+								</Link>
 								<CardDescription className='space-y-2'>
 									<div className='flex'>
 										<h1 className='text-2xl font-bold text-white leading-8'>
@@ -74,7 +81,7 @@ export const Last3NewsComponent = ({lastThreeNews}:Last3NewsLayout) => {
 							<CardContent className='p-0'>
 								<div className='relative h-full'>
 									<Image
-										src={imageSource(lastThreeNews[0].preview.url || '')}
+										src={imageSource(lastThreeNews[2].preview.url || '')}
 										alt={lastThreeNews[2].preview.alt}
 										objectFit='cover'
 										className='rounded-xl'
@@ -83,9 +90,11 @@ export const Last3NewsComponent = ({lastThreeNews}:Last3NewsLayout) => {
 								</div>
 							</CardContent>
 							<CardHeader className='p-0 space-y-3 h-full'>
-								<CardTitle className='text-sm text-[#E1056D]'>
-									Фин-тех
-								</CardTitle>
+								<Link
+									href={`${lastThreeNews[2].innerPage.section}/${lastThreeNews[2].innerPage.section_slug}`}
+								>
+									{t(lastThreeNews[2].newsGroups.name)}
+								</Link>
 								<CardDescription className='space-y-2'>
 									<div className='flex'>
 										<h1 className='text-2xl font-bold text-white leading-8'>

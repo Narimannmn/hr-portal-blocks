@@ -9,6 +9,10 @@ import { SpaceFillerComponent } from './SpaceFillerComponent/SpaceFillerComponen
 import { VacancyCatalogComponent } from './VacancyCatalogComponent/VacancyCatalogComponent'
 import { HeroComponent } from './HeroComponent/HeroComponent'
 import { ShareResponsesFormComponent } from './ShareResponsesFormComponent/ShareResponsesFormComponent'
+import { RichTextComponent } from './RichTextComponent/RichTextComponent'
+import { FileUploadBlockComponent } from './FileUploadBlockComponent/FileUploadBlockComponent'
+import { TextBlockComponents } from './TextBlockComponents/TextBlockComponents'
+import { ImageBlockComponent } from './ImageBlockComponent/ImageBlockComponent'
 
 // Define your block types
 export const blockTypesMap = {
@@ -23,6 +27,10 @@ export const blockTypesMap = {
 	SpaceFiller: 'SpaceFiller',
 	vacancyCatalog: 'vacancyCatalog',
 	shareResponsesForm: 'shareResponsesForm',
+	richText: 'richText',
+	fileUploadBlock: 'fileUploadBlock',
+	textBlock: 'textBlock',
+	imageBlock: 'imageBlock',
 } as const
 
 export type BlockKeys = keyof typeof blockTypesMap
@@ -40,4 +48,8 @@ export const BlockComponents = {
 	SpaceFiller: SpaceFillerComponent,
 	vacancyCatalog: VacancyCatalogComponent,
 	shareResponsesForm: ShareResponsesFormComponent,
+	richText: RichTextComponent,
+	fileUploadBlock: FileUploadBlockComponent,
+	textBlock: TextBlockComponents,
+	imageBlock: ImageBlockComponent,
 }
