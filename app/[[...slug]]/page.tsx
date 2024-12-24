@@ -1,4 +1,4 @@
-import { fetchPageData, fetchMainPage } from '@/src/api/page'
+import { fetchPageData, fetchMainPage, fetchInnerPage } from '@/src/api/page'
 import { PageDocument } from '@/src/types/page.type'
 import { RenderPage } from '@/src/utils/RenderPage'
 import { notFound, redirect } from 'next/navigation'
@@ -11,33 +11,42 @@ async function fetchData(slug: string[]) {
 		innerPageName: pagesRoute?.[1],
 	}
 	let pageData: PageDocument | null = null
+	let innerPage: PageDocument | null = null
 
 	try {
-		const fetchedPage = pagesArray.pageName
-			? await fetchPageData(pagesArray.pageName)
-			: await fetchMainPage()
-		pageData = fetchedPage
+		if (pagesArray.innerPageName) {
+			innerPage = await fetchInnerPage(
+				pagesArray.pageName,
+				pagesArray.innerPageName
+			)
+		} else {
+			const fetchedPage = pagesArray.pageName
+				? await fetchPageData(pagesArray.pageName)
+				: await fetchMainPage()
+			pageData = fetchedPage
+		}
 	} catch (error) {
 		console.error('Error fetching page data:', error)
 	}
-	return pageData
+	return { pageData, innerPage }
 }
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
-	const searchParams = await params;
-	const pageData = await fetchData(searchParams.slug || [''])
+	const searchParams = await params
+	const { pageData } = await fetchData(searchParams.slug || [''])
 
 	if (!pageData) {
 		return notFound()
 	}
-	if (searchParams.slug && (searchParams.slug[0] !== pageData.slug)) {
+	if (searchParams.slug && searchParams.slug[0] !== pageData.slug) {
 		redirect(pageData.slug)
 	}
+	console.log(pageData)
 	return (
 		<>
 			<NextTopLoader color={'#e12972'} />
 			<div className='px-20'>
-				<RenderPage pageData={pageData} />
+				<RenderPage pageData={pageData}/>
 			</div>
 		</>
 	)

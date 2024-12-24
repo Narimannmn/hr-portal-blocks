@@ -6,6 +6,9 @@ import { VacancyCardButton } from './VacancyCardButton';
 import { useLang } from '@/src/contexts/lang.context';
 import { Job } from '@/src/types/generated-types';
 import RichTextParser from '@/src/utils/RichTextParser';
+import salary from '@/public/salary.svg'
+import time from '@/public/time.svg'
+
 export interface VacancyCardProps {
   vacancy: Job;
 }
@@ -40,7 +43,7 @@ export const VacancyCard = ({ vacancy }: VacancyCardProps) => {
 						<div className='flex gap-6'>
 							<div className='flex items-center'>
 								<Image
-									src={'./time.svg'}
+									src={time}
 									alt='Time Icon'
 									width={20}
 									height={20}
@@ -48,12 +51,7 @@ export const VacancyCard = ({ vacancy }: VacancyCardProps) => {
 								<span className='ml-2'>{vacancy.workSchedule}</span>
 							</div>
 							<div className='flex items-center'>
-								<Image
-									src={'./salary.svg'}
-									alt='Salary Icon'
-									width={20}
-									height={20}
-								/>
+								<Image src={salary} alt='Salary Icon' width={20} height={20} />
 								<span className='ml-2'>
 									{vacancy.priceRange.minPrice}K - {vacancy.priceRange.maxPrice}
 									K

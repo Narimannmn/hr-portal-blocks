@@ -11,22 +11,27 @@ export interface TeamCardProps {
 export const TeamCard = ({ team }: TeamCardProps) => {
   const { t } = useLang();
   return (
-    <div className='flex flex-col gap-8'>
-      <div className='space-y-5'>
-        <h1 className='font-semibold text-4xl'>{t(team.teamName)}</h1>
-        <p>{t(team.description)}</p>
-      </div>
-      <div>
-        <Carousel>
-          <CarouselContent>
-            {team.members?.map((member) => (
-              <CarouselItem key={member.id} className='basis-1/5'>
-                <EmployeeCard employee={member} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-      </div>
-    </div>
-  );
+		<div className='flex flex-col gap-8'>
+			<div className='space-y-5'>
+				<h1 className='font-semibold text-4xl'>{t(team.teamName)}</h1>
+				<p>{t(team?.description)}</p>
+			</div>
+			<div>
+				<Carousel>
+					<CarouselContent>
+						{team.members?.map(member => (
+							<CarouselItem
+								key={typeof member == 'number' ? member : member.id}
+								className='basis-1/5'
+							>
+								<EmployeeCard
+									employee={member.member}
+								/>
+							</CarouselItem>
+						))}
+					</CarouselContent>
+				</Carousel>
+			</div>
+		</div>
+	)
 };

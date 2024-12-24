@@ -1,5 +1,6 @@
 import { RichTextNode } from "../utils/serializeRichTextToHtml"
 import { TLabel } from "./global.types"
+import { PageDocument } from "./page.type"
 
 export interface User {
 	id: number
@@ -39,6 +40,27 @@ export interface Employee {
 	updatedAt: string
 	createdAt: string
 }
+export interface MenuItem {
+	id: number
+	labelKz: string
+	labelRu: string
+	labelEn: string
+	linkType?: ('page' | 'custom')
+	page?: PageDocument
+	freeLink?: string | null
+	updatedAt: string
+	createdAt: string
+}
+
+export interface MenuOrder {
+	id: number
+	menuItems?:{
+				menuItem: MenuItem
+				id?: string | null
+		  }[]
+	updatedAt: string
+	createdAt: string
+}
 
 export interface News {
 	id: number
@@ -73,7 +95,10 @@ export interface Department {
 	id: number
 	name: TLabel
 	description: TLabel
-	teams?: Team[]
+	teams?: {
+		id: string
+		team: Team
+	}[]
 	updatedAt: string
 	createdAt: string
 }
@@ -82,7 +107,10 @@ export interface Team {
 	id: number
 	teamName: TLabel
 	description: TLabel
-	members?: Employee[]
+	members?: {
+		id: string
+		member: Employee
+	}[]
 	updatedAt: string
 	createdAt: string
 }

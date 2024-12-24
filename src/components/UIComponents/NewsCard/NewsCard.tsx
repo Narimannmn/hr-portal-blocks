@@ -1,30 +1,33 @@
-'use client';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+'use client'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from '@/components/ui/card';
+	Card,
+	CardContent,
+	CardHeader,
+	CardTitle,
+	CardDescription,
+	CardFooter,
+} from '@/components/ui/card'
 
-import Image from 'next/image';
-import Link from 'next/link';
-import dayjs from 'dayjs';
+import Image from 'next/image'
+import dayjs from 'dayjs'
 import icon from '@/public/arrow-right-top.svg'
-import 'dayjs/locale/ru';
-import { useLang } from '@/src/contexts/lang.context';
-import { News } from '@/src/types/generated-types';
-import { imageSource } from '@/src/utils/imageSource';
+import 'dayjs/locale/ru'
+import { useLang } from '@/src/contexts/lang.context'
+import { News } from '@/src/types/generated-types'
+import { imageSource } from '@/src/utils/imageSource'
+import { useRouter, usePathname } from 'next/navigation'
 
 export interface NewsCardProps {
-  newItem: News;
+	newItem: News
 }
-export function NewsCard({ newItem }: NewsCardProps) {
-  const { t } = useLang();
 
-  return (
+export function NewsCard({ newItem }: NewsCardProps) {
+	const { t } = useLang()
+	const router = useRouter()
+	const pathname = usePathname() // Get the current path
+
+	return (
 		<Card className='bg-transparent border-none w-full'>
 			<CardContent className='p-0 mb-8'>
 				<div className='relative w-full h-[240px]'>
@@ -43,15 +46,15 @@ export function NewsCard({ newItem }: NewsCardProps) {
 				</CardTitle>
 				<CardDescription className='space-y-2'>
 					<div>
-						<Link
-							href={`/news/${newItem.id}`}
-							className='grid grid-cols-[1fr_10px] h-8 gap-2 items-center'
+						<div
+							onClick={() => router.push(`${pathname}/news/${newItem.id}`)}
+							className='grid grid-cols-[1fr_10px] h-8 gap-2 items-center cursor-pointer'
 						>
 							<h1 className='text-2xl font-bold text-white leading-8 overflow-hidden whitespace-nowrap text-ellipsis'>
 								{t(newItem.title)}
 							</h1>
-							<Image src={icon} alt='asd' height={10} width={10} />
-						</Link>
+							<Image src={icon} alt='arrow' height={10} width={10} />
+						</div>
 					</div>
 					<p className='text-[#D4D4D4] text-lg leading-6 overflow-hidden whitespace-nowrap text-ellipsis'>
 						{t(newItem.description)}

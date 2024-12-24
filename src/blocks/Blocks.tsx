@@ -8,6 +8,7 @@ import { NewsCatalogComponent } from './NewsCatalogComponent/NewsCatalogComponen
 import { SpaceFillerComponent } from './SpaceFillerComponent/SpaceFillerComponent'
 import { VacancyCatalogComponent } from './VacancyCatalogComponent/VacancyCatalogComponent'
 import { HeroComponent } from './HeroComponent/HeroComponent'
+import { ShareResponsesFormComponent } from './ShareResponsesFormComponent/ShareResponsesFormComponent'
 
 // Define your block types
 export const blockTypesMap = {
@@ -21,6 +22,7 @@ export const blockTypesMap = {
 	newsCatalog: 'newsCatalog',
 	SpaceFiller: 'SpaceFiller',
 	vacancyCatalog: 'vacancyCatalog',
+	shareResponsesForm: 'shareResponsesForm',
 } as const
 
 export type BlockKeys = keyof typeof blockTypesMap
@@ -28,7 +30,7 @@ export type BlockType = (typeof blockTypesMap)[BlockKeys]
 
 export const BlockComponents = {
 	breadcrumb: BreadcrumbComponent,
-	// departmentsCatalog: DepartmentsCatalogComponent,
+	departmentsCatalog: DepartmentsCatalogComponent,
 	departmentBlock: DepartmentBlockComponent,
 	heading: HeadingComponent,
 	hero: HeroComponent,
@@ -37,4 +39,5 @@ export const BlockComponents = {
 	newsCatalog: NewsCatalogComponent,
 	SpaceFiller: SpaceFillerComponent,
 	vacancyCatalog: VacancyCatalogComponent,
+	shareResponsesForm: ShareResponsesFormComponent,
 }

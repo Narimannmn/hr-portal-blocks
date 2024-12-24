@@ -55,24 +55,22 @@ export const LangProvider: FC<{ children: ReactNode }> = ({ children }) => {
 		}
 	}, [lang])
 
-	const t = (labels: TLabel): string => {
-		const { labelRu, labelEn, labelKz } = labels
-
-		switch (lang) {
-			case 'En':
-				return labelEn
-			case 'Рус':
-				return labelRu
-			case 'Қаз':
-				return labelKz
-			default:
-				return labelEn
-		}
+const t = (labels: TLabel): string => {
+	const { labelRu = '', labelEn = '', labelKz = '' } = labels
+	switch (lang) {
+		case 'En':
+			return labelEn
+		case 'Рус':
+			return labelRu
+		case 'Қаз':
+			return labelKz
+		default:
+			return labelEn
 	}
+}
 
 	const tRichText = (labels: TRichText): RichTextNode[] => {
 		const { labelRu, labelEn, labelKz } = labels
-
 		switch (lang) {
 			case 'En':
 				return labelEn

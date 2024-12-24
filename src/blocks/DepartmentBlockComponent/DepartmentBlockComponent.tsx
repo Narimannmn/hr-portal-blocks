@@ -14,7 +14,7 @@ export const DepartmentBlockComponent = ({ description, title, employees, linkTy
 		<div className='py-24 space-y-16'>
 			<div className='text-center flex flex-col justify-center items-center'>
 				<div className='flex justify-center'>
-					<div className='w-1/2'>
+					<div>
 						<h1 className='font-bold text-4xl mb-5'>{t(description)}</h1>
 						<p className='text-xl mb-8'>{t(title)}</p>
 					</div>

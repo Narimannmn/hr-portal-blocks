@@ -1,30 +1,31 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import React from 'react';
-import Image from 'next/image';
-import { useLang } from '@/src/contexts/lang.context';
-import { Employee } from '@/src/types/generated-types';
-import { imageSource } from '@/src/utils/imageSource';
-
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from '@/components/ui/card'
+import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { useLang } from '@/src/contexts/lang.context'
+import { Employee } from '@/src/types/generated-types'
+import { imageSource } from '@/src/utils/imageSource'
+import { fetchEmployeeById } from '@/src/api/employee'
 
 export interface EmployeeCardProps {
-  employee: Employee;
+	employee: Employee
 }
 
 export const EmployeeCard = ({ employee }: EmployeeCardProps) => {
-  const { t } = useLang();
-  return (
+	const { t } = useLang()
+
+	return (
 		<Card className='bg-transparent border-none text-white w-full'>
 			<CardContent className='p-0 mb-6'>
 				<div className='relative w-full h-[186px]'>
 					<Image
-						src={imageSource(employee.image.url || '')}
-						alt={employee.image.alt}
+						src={imageSource(employee.image?.url || '')}
+						alt={employee.image?.alt || 'employee image'}
 						layout='fill'
 						objectFit='cover'
 						className='rounded-xl'
@@ -63,4 +64,4 @@ export const EmployeeCard = ({ employee }: EmployeeCardProps) => {
 			</CardHeader>
 		</Card>
 	)
-};
+}
